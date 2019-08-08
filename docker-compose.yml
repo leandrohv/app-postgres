@@ -7,6 +7,8 @@ services:
     image: develop/postgres
     networks:
       - backend
+    ports:
+      - "$DEV_PORT_EXT_POSTGRES:$DEV_PORT_INT_POSTGRES"
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
