@@ -7,11 +7,9 @@ services:
     image: develop/postgres
     networks:
       - backend
-    ports: 
-      - "$DEV_PORT_INT_POSTGRES:$DEV_PORT_INT_POSTGRES"
     restart: always
     environment:
-      POSTGRES_PASSWORD: $DEV_POSTGRES_PASSWORD
+      POSTGRES_PASSWORD: postgres
 
   pgadmin4:
     build: 
