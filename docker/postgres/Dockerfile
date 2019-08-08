@@ -1,0 +1,9 @@
+FROM postgres:9.3
+
+RUN echo "host all all 0.0.0.0/0 md5" >> /var/lib/postgresql/data/pg_hba.conf
+
+ENV POSTGRES_DB=$DEV_POSTGRES_DB
+ENV POSTGRES_PASSWORD=$DEV_POSTGRES_PASSWORD
+ENV LANG=$DEV_LANG
+
+EXPOSE $DEV_PORT_INT_POSTGRES

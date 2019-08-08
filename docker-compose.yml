@@ -1,0 +1,31 @@
+version: "3.2"
+services:
+  postgres:
+    build: 
+      dockerfile: ./docker/postgres/Dockerfile
+      context: .
+    image: develop/postgres
+    networks:
+      - backend
+    ports: 
+      - "$DEV_PORT_INT_POSTGRES:$DEV_PORT_INT_POSTGRES"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: $DEV_POSTGRES_PASSWORD
+
+  pgadmin4:
+    build: 
+      dockerfile: ./docker/pgadmin/Dockerfile
+      context: .
+    image: develop/pgadmin4
+    networks:
+      - backend
+    ports:
+      - "$DEV_PORT_EXT_PGADMIN:$DEV_PORT_INT_PGADMIN"
+    restart: always
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=$DEV_PGADMIN_DEFAULT_EMAIL
+      - PGADMIN_DEFAULT_PASSWORD=$DEV_PGADMIN_DEFAULT_PASSWORD
+  
+networks:
+  backend:
